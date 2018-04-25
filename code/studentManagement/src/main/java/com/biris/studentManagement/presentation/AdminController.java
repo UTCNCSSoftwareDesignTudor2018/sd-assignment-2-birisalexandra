@@ -99,7 +99,7 @@ public class AdminController {
                                       @RequestParam String cardNumber,
                                       @RequestParam String username,
                                       @RequestParam String password) {
-        Student s = new Student(0, name, address, cardNumber, username, password);
+        Student s = new Student.StudentBuilder().setStudentId(0).setName(name).setAddress(address).setCardNumber(cardNumber).setUsername(username).setPassword(password).build();
         studentService.insertNewStudent(s);
         mav.getModel().replace("students", studentService.getAllStudents());
         return mav;

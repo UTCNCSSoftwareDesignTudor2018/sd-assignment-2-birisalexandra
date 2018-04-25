@@ -39,69 +39,53 @@ public class Student {
     public Student() {
     }
 
-    public Student(int id, String name, String address, String cardNumber, String username, String password) {
-        this.studentId = id;
-        this.name = name;
-        this.address = address;
-        this.cardNumber = cardNumber;
-        this.username = username;
-        this.password = password;
+    public Student(StudentBuilder builder) {
+        this.studentId = builder.studentId;
+        this.name = builder.name;
+        this.address = builder.address;
+        this.cardNumber = builder.cardNumber;
+        this.username = builder.username;
+        this.password = builder.password;
     }
 
     public Integer getStudentId() {
         return studentId;
     }
 
-    public void setId(Integer studentId) {
-        this.studentId = studentId;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public String getCardNumber() {
         return cardNumber;
-    }
-
-    public void setCardNumber(String cardNumber) {
-        this.cardNumber = cardNumber;
     }
 
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public String getPassword() {
         return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public List<Subject> getCourses() {
         return courses;
     }
 
-    public void setCourses(List<Subject> courses) {
-        this.courses = courses;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setCardNumber(String cardNumber) {
+        this.cardNumber = cardNumber;
     }
 
     @Override
@@ -114,5 +98,48 @@ public class Student {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 '}';
+    }
+
+    public static class StudentBuilder {
+        private Integer studentId;
+        private String name;
+        private String address;
+        private String cardNumber;
+        private String username;
+        private String password;
+
+        public StudentBuilder setStudentId(Integer studentId) {
+            this.studentId = studentId;
+            return this;
+        }
+
+        public StudentBuilder setName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public StudentBuilder setAddress(String address) {
+            this.address = address;
+            return this;
+        }
+
+        public StudentBuilder setCardNumber(String cardNumber) {
+            this.cardNumber = cardNumber;
+            return this;
+        }
+
+        public StudentBuilder setUsername(String username) {
+            this.username = username;
+            return this;
+        }
+
+        public StudentBuilder setPassword(String password) {
+            this.password = password;
+            return this;
+        }
+
+        public Student build() {
+            return new Student(this);
+        }
     }
 }
