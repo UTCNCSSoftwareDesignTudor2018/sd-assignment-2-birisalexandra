@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Student page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+<div>
+    <h><b>Student information is displayed below:</b></h>
+    <dl>
+        <dt>Name:</dt>
+        <dd th:text="${student.name}"></dd>
+        <dt>Address:</dt>
+        <dd th:text="${student.address}"></dd>
+        <dt>Card Number:</dt>
+        <dd th:text="${student.cardNumber}"></dd>
+        <dt>Username:</dt>
+        <dd th:text="${student.username}"></dd>
+        <dt>Password:</dt>
+        <dd th:text="${student.password}"></dd>
+    </dl>
+</div>
+
+<div>
+    <form action="/student" method="post">
+        <h><b>Change Name:</b></h><input type="text" name="name"/>
+        <input type="submit" value="Change" name="Change name"/>
+    </form>
+</div>
+<br>
+<div>
+    <form action="/student" method="post">
+    <h><b>Change Address:</b></h><input type="text" name="address"/>
+    <input type="submit" value="Change" name="Change address"/>
+    </form>
+</div>
+<br>
+<div>
+    <form action="/student" method="post">
+    <h><b>Change Card Number:</b></h><input type="text" name="cardNumber"/>
+    <input type="submit" value="Change" name="Change card"/>
+    </form>
+</div><br>
+
+<div>
+    <form action="/student" method="post">
+        <h><b>Type the name of the class you wish to enroll:</b></h>
+        <input type="text" name="class"/>
+        <input type="submit" value="Enroll" name="Enroll"/>
+    </form>
+</div>
+<br>
+
+<div>
+    <h><b>Enrollments are listed below:</b></h>
+    <table  border="1">
+        <thead>
+        <tr>
+            <th>Subject name</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="enr : ${ enrollments }">
+            <td th:text="${enr.subject.title}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<br>
+
+<div>
+    <h><b>Grades are listed below:</b></h>
+    <table  border="1">
+        <thead>
+        <tr>
+            <th>Subject name</th>
+            <th>Grade</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="grd : ${ grades }">
+            <td th:text="${grd.enroll.subject.title}"></td>
+            <td th:text="${grd.grade}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

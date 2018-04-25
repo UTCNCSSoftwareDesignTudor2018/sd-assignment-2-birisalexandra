@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:form="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin page</title>
+</head>
+<body>
+
+<div>
+    <form action="/admin" method="post">
+        <h><b>Add a new student in the database:</b></h><br><br>
+        <h>Name: </h><input type="text" name="name" /><br><br>
+        <h>Address: </h><input type="text" name="address" /><br><br>
+        <h>Card Number: </h><input type="text" name="cardNumber"/><br><br>
+        <h>Username: </h><input type="text" name="username"/><br><br>
+        <h>Password: </h><input type="text" name="password"/><br><br>
+        <input type="submit" value="Insert" name="Insert student"/>
+    </form>
+</div>
+<br>
+
+<div>
+    <h><b>Courses are listed below:</b></h>
+    <table  border="1">
+        <thead>
+        <tr>
+            <th>Subject name</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="sub : ${ subjects }">
+            <td th:text="${sub.title}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<br>
+
+<div>
+    <form action="/admin" method="post">
+        <h><b>Add a new course:</b></h><input type="text" name="subject"/>
+        <input type="submit" value="Add" name="Add subject"/>
+    </form>
+</div>
+<br>
+
+<div>
+    <h><b>Students are listed below:</b></h>
+    <table  border="1">
+        <thead>
+        <tr>
+            <th>Student name</th>
+            <th>Address</th>
+            <th>Card Number</th>
+            <th>Username</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="stud : ${ students }">
+            <td th:text="${stud.name}"></td>
+            <td th:text="${stud.address}"></td>
+            <td th:text="${stud.cardNumber}"></td>
+            <td th:text="${stud.username}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<br>
+
+<div>
+    <form action="/admin" method="post">
+        <h><b>Delete a student after username:</b></h><input type="text" name="student"/>
+        <input type="submit" value="Delete" name="Delete"/>
+    </form>
+</div>
+<br>
+
+<div>
+    <form action="/admin" method="post">
+        <h><b>Add grades to students:</b></h><br>
+        <h>Enter the username of the student:</h><input type="text" name="student"/>
+        <input type="submit" value="See grades" name="See grades"/>
+    </form>
+</div>
+<br>
+
+<div>
+    <h><b>Grades are listed below:</b></h>
+    <table  border="1">
+        <thead>
+        <tr>
+            <th>Subject name</th>
+            <th>Grade</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="grd : ${ grades }">
+            <td th:text="${grd.enroll.subject.title}"></td>
+            <td th:text="${grd.grade}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<br>
+
+<div>
+    <form action="/admin" method="post">
+        <h><b>Choose subject:</b></h><input type="text" name="subject"/>
+        <h><b>Place the grade:</b></h><input type="text" name="grade"/>
+        <input type="submit" value="Add grade" name="Add grade"/>
+    </form>
+</div>
+<br>
+
+</body>
+</html>
